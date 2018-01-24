@@ -1,15 +1,13 @@
 {
     "manifest_version": 2,
   
-    "name": "GTmetrix Analyzer Plugin",
-    "description": "This extension will analyze a page using GTmetrix",
+    "name": "FormStash",
+    "description": "This extension will stash form data and pop it back onto any page",
     "version": "1.0",
   
     "browser_action": {
      "default_icon": "icon.png",
      "default_popup": "popup.html"
     },
-    "permissions": [
-     "activeTab"
-     ]
+    "permissions": ["tabs", "<all_urls>","storage"]
   }
