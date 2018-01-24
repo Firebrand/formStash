@@ -34,6 +34,12 @@ function onWindowLoad() {
     });
   },false);
 
+
+  var clearAllButton = document.getElementById('clearAll');
+  clearAllButton.addEventListener('click', function () {
+    chrome.storage.local.set({'formStash':''});
+  },false);
+
 }
 
 window.onload = onWindowLoad;

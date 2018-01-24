@@ -1,3 +1,3 @@
-chrome.storage.local.get('nano', function (result) {
-    console.log(result.nano);
+chrome.storage.local.get('formStash', function (result) {
+    console.log(result.formStash);
 });

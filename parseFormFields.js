@@ -22,6 +22,15 @@ var type='';
     fieldsObj[key] = value;
 }
 
+hashCode = function(str){
+    var hash = 5381;
+    for (i = 0; i < str.length; i++) {
+        char = str.charCodeAt(i);
+        hash = ((hash << 5) + hash) + char; /* hash * 33 + c */
+    }
+    return hash;
+}
+
 
 fields.forEach(field=>{
 
@@ -50,5 +59,16 @@ if (textarea.value.length>1 && textarea.type!=='hidden') id_or_name("textarea",t
 }
 )
 
+var documentTitle = document.title;
+var hashedDocumentTitle = hashCode(documentTitle);
+chrome.storage.local.get('formStash', function (result) {
+    var formStash = result.formStash || {};
+    
+    formStash[hashedDocumentTitle] = {"title":documentTitle,"fields":fieldsObj} 
+    console.log(formStash);
+    chrome.storage.local.set({"formStash":formStash});
+});
 
-chrome.storage.local.set({"nano":fieldsObj});
+
+
+
