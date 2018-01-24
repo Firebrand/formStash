@@ -1,4 +1,4 @@
-var fields = document.body.querySelectorAll("input");
+
 
 var fieldsObj = {};
 
@@ -17,6 +17,8 @@ var type='';
 
     key = `${elementType}:${type}:${element.id}`;
     value = `${element.value}`;
+    
+
     console.log(`${key}:${value}`);
 
     fieldsObj[key] = value;
@@ -31,17 +33,24 @@ hashCode = function(str){
     return hash;
 }
 
-
+var fields = document.body.querySelectorAll("input");
 fields.forEach(field=>{
-
 if (field.value.length>1 && field.type!=='hidden' && field.type!=='submit') id_or_name("input",field);
 
 }
 )
 
+
+// Finish up CKE files
+var ckes = document.body.querySelector('.cke_wysiwyg_frame');
+ckes.forEach(cke=>{
+    var iframeDocument = cke.contentDocument || cke.contentWindow.document;
+    var key = `cke:cke:${element.id}`;
+}
+)
+
+
 var selects = document.body.querySelectorAll("select");
-
-
 selects.forEach(select=>{
 
     id_or_name("select",select);
@@ -51,11 +60,8 @@ selects.forEach(select=>{
 
 
 var textareas = document.body.querySelectorAll("textarea");
-
 textareas.forEach(textarea=>{
-
 if (textarea.value.length>1 && textarea.type!=='hidden') id_or_name("textarea",textarea);
-
 }
 )
 
