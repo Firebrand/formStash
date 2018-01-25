@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "FormStash",
   "description": "This extension will stash form data for later use. Click on your stash to pop the values back into an identical form!",
-  "version": "1.0.1",
+  "version": "1.1.1",
   "browser_action": {
    "default_icon": "icon-16.png",
    "default_popup": "popup.html"
