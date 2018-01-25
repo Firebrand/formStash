@@ -12,6 +12,18 @@ chrome.storage.local.get('formStash', function (result) {
           console.log(`Applied ${fields[field]} to ${piecesArr[2]}`)
         }
       }
+
+
+      if (piecesArr[0] === 'select') {
+  
+        var domField = document.body.querySelector('#' + piecesArr[2]);
+  
+        if (domField != null) {
+          domField.selectedIndex = fields[field];
+          
+          console.log(`Applied ${fields[field]} to ${piecesArr[2]}`)
+        }
+      }
   
   
       if (piecesArr[0] === 'checkbox') {

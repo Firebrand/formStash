@@ -3,24 +3,26 @@
 
 <head>
   <title>FormStash by Alex T</title>
-  <script src="popup.js"></script>
-  <link rel="stylesheet" type="text/css" href="popup.css" />
+  <script src="formstash.js"></script>
+  <link rel="stylesheet" type="text/css" href="formstash.css" />
 </head>
 
-<body style='width:500px;'>
-    <div style="float:left; width:59px;">
-        <img src="icon-48.png">
-      </div>
-  <div style="float:left; width:191px;">
-    <div style="font-weight:bold; font-size:20px; ">FormStash</div>
+<body>
+  <div class="frms-image">
+    <img src="icon-48.png">
+  </div>
+  <div class="frms-title">
+    <span>FormStash</span>
     by Alex Tsirozidis
   </div>
-  <div style="float:left;  width:250px; text-align:right;">
+  <div class="frms-buttons">
     <button id="checkPage" class="btn btn-green">Stash this form</button>
     <button id="clearAll" class="btn btn-red">Clear all</button>
   </div>
   <div id="message"></div>
-  <div style="float:left; width:480px; padding:10px; border:1px solid silver; margin:20px 20px 20px 0px" id="stash"><b>You have not stashed any forms yet</b></div>
+  <div class="frms-stash-div" id="stash">
+    <b>You have not stashed any forms yet</b>
+  </div>
 </body>
 
 </html>

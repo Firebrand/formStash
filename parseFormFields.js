@@ -1,25 +1,14 @@
 var fieldsObj = {};
 
-function id_or_name(elementType, element) {
-
-  var key = '';
-  var value = '';
-  var type = '';
+function addToFieldsObj(elementType, element) {
 
   if (element.id.length > 1) {
-    type = 'id';
-  } else if (element.name.length > 1) {
-    type = 'name';
-  } else {
-    return;
-  }
+    var key = `${elementType}~id~${element.id}`;
+    var value = `${element.value}`;
+    console.log(`${key}~${value}`);
+    fieldsObj[key] = value;
+  } 
 
-  key = `${elementType}~${type}~${element.id}`;
-  value = `${element.value}`;
-
-
-  console.log(`${key}~${value}`);
-  fieldsObj[key] = value;
 }
 
 hashCode = function (str) {
@@ -35,7 +24,7 @@ var fields = document.body.querySelectorAll("input");
 fields.forEach(field => {
   if (field.value.length > 0 && field.type !== 'hidden' && field.type !== 'submit') {
     if ( field.type !== 'checkbox'){
-      id_or_name("input", field);
+      addToFieldsObj("input", field);
     }
     else {
       var key = `checkbox~id~${field.id}`;
@@ -70,7 +59,11 @@ if (ckes != null) {
 
 var selects = document.body.querySelectorAll("select");
 selects.forEach(select => {
-  id_or_name("select", select);
+  var key = `select~id~${select.id}`;
+  var value = select.selectedIndex;
+
+  console.log(`${key}~${value}`);
+  fieldsObj[key] = value;
 })
 
 
@@ -87,7 +80,7 @@ if (chosens != null) {
 
 var textareas = document.body.querySelectorAll("textarea");
 textareas.forEach(textarea => {
-  if (textarea.value.length > 1 && textarea.type !== 'hidden') id_or_name("textarea", textarea);
+  if (textarea.value.length > 1 && textarea.type !== 'hidden') addToFieldsObj("textarea", textarea);
 })
 
 var today = new Date();

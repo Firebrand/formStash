@@ -1,0 +1,104 @@
+body {
+  padding: 10px;
+  width: 500px;
+}
+
+h1 {
+  margin: 0px;
+}
+
+.btn {
+  -webkit-border-radius: 7;
+  -moz-border-radius: 7;
+  border-radius: 7px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 12px;
+  background: #3498db;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  border: 0px;
+}
+
+.btn:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-red {
+  background: #654F97;
+}
+
+.btn-red:hover {
+  background: rgb(131, 110, 180);
+}
+
+.btn-green {
+  background: #0082CA;
+}
+
+.btn-green:hover {
+  background: rgb(42, 157, 219);
+}
+
+.btn-blue {
+  background: #3498db;
+}
+
+.btn-blue:hover {
+  background: #3cb0fd;
+}
+
+.stash-file {
+  cursor: pointer;
+  background-color: #f7fcff;
+  padding: 5px;
+  border: 1px solid rgb(187, 187, 173);
+  margin: 0px 0px 3px 0px;
+  float: left;
+  width: 430px;
+}
+
+.stash-file:hover {
+  background-color: rgb(251, 255, 211);
+  border: 1px solid rgb(233, 221, 56);
+}
+
+.delete-stash-file {
+  height: 28px;
+  width: 28px;
+  float: left;
+  background-image: url("ex.png");
+  cursor: pointer;
+}
+
+.frms-image {
+  float: left;
+  width: 59px;
+}
+
+.frms-title {
+  float: left;
+  width: 191px;
+  
+}
+
+.frms-title span {
+  font-weight: bold;
+  font-size: 20px;
+  display: block;
+}
+
+.frms-buttons {
+  float: left;
+  width: 250px;
+  text-align: right;
+}
+
+.frms-stash-div {
+  float: left;
+  width: 480px;
+  padding: 10px;
+  border: 1px solid silver;
+  margin: 20px 20px 20px 0px
+}
