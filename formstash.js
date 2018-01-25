@@ -1,79 +1,75 @@
-chrome.runtime.onMessage.addListener(function (request, sender) {
+chrome.runtime.onMessage.addListener((request, sender) => {
   if (request.action == "getSource") {
-    var source = request.source;
-
+    const source = request.source;
   }
 });
 
 function onWindowLoad() {
 
-  var stash = document.querySelector('#stash');
-  var message = document.querySelector('#message');
+  const stash = document.querySelector('#stash');
+  const message = document.querySelector('#message');
 
-  chrome.storage.local.get('formStash', function (result) {
+  chrome.storage.local.get('formStash', result => {
     console.log(result);
     if (typeof result.formStash === 'object') {
-    stash.innerHTML = "";
-    for (hash in result.formStash) {
-      stash.innerHTML += `<div id='${hash}' class='stash-file'>${result.formStash[hash].title}</div><div id='${hash}' class='delete-stash-file'></div>`;
+      stash.innerHTML = "";
+      for (hash in result.formStash) {
+        stash.innerHTML += `<div id='${hash}' class='stash-file'>${result.formStash[hash].title}</div><div id='${hash}' class='delete-stash-file'></div>`;
+      }
     }
-  }
 
 
-    var stashFileButtons = document.querySelectorAll('.stash-file');
+    const stashFileButtons = document.querySelectorAll('.stash-file');
 
     stashFileButtons.forEach(stashFileButton => {
-      stashFileButton.addEventListener('click', function () {
+      stashFileButton.addEventListener('click', () => {
         chrome.tabs.executeScript(null, {
-          code: 'var stashfileId = '+stashFileButton.id+';'
-        }, function () {
+          code: `var stashfileId = ${stashFileButton.id};`
+        }, () => {
           chrome.tabs.executeScript(null, {
-            file: "popFields.js"
-          }, function () {
+            file: "pop-field-data.js"
+          }, () => {
             // If you try and inject into an extensions page or the webstore/NTP you'll get an error
             if (chrome.runtime.lastError) {
-              message.innerText = 'There was an error injecting script : \n' + chrome.runtime.lastError.message;
+              message.innerText = `There was an error injecting script : \n${chrome.runtime.lastError.message}`;
             }
           });
         });
       });
     });
 
-    var deleteFileButtons = document.querySelectorAll('.delete-stash-file');
+    const deleteFileButtons = document.querySelectorAll('.delete-stash-file');
 
     deleteFileButtons.forEach(deleteFileButton => {
-      deleteFileButton.addEventListener('click', function () {
-        chrome.storage.local.get('formStash', function (res) {
-          var formStash = res.formStash || {};
-        
+      deleteFileButton.addEventListener('click', () => {
+        chrome.storage.local.get('formStash', res => {
+          const formStash = res.formStash || {};
+
           delete formStash[deleteFileButton.id];
-        
+
           chrome.storage.local.set({
             "formStash": formStash
           });
           location.reload();
         });
-        
+
       });
     });
-
-
-
   });
 
 
-  var checkPageButton = document.getElementById('checkPage');
-  checkPageButton.addEventListener('click', function () {
+  const checkPageButton = document.getElementById('checkPage');
+  checkPageButton.addEventListener('click', () => {
     chrome.tabs.executeScript(null, {
-      file: "parseFormFields.js"
-    }, function () {
+      file: "stash-field-data.js"
+    }, () => {
       // If you try and inject into an extensions page or the webstore/NTP you'll get an error
       if (chrome.runtime.lastError) {
-        message.innerText = 'There was an error injecting script : \n' + chrome.runtime.lastError.message;
+        message.innerText = `There was an error injecting script : \n${chrome.runtime.lastError.message}`;
       }
       location.reload();
     });
-   
+
   }, false);
 
 
@@ -90,8 +86,8 @@ function onWindowLoad() {
   // }, false);
 
 
-  var clearAllButton = document.getElementById('clearAll');
-  clearAllButton.addEventListener('click', function () {
+  const clearAllButton = document.getElementById('clearAll');
+  clearAllButton.addEventListener('click', () => {
     chrome.storage.local.set({
       'formStash': ''
     });
