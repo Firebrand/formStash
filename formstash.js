@@ -46,10 +46,17 @@ function onWindowLoad() {
           const formStash = res.formStash || {};
 
           delete formStash[deleteFileButton.id];
+          if (Object.keys(formStash).length < 1) {
+            chrome.storage.local.set({
+              'formStash': ''
+            });
+          }
+          else {
+            chrome.storage.local.set({
+              "formStash": formStash
+            });
+          }
 
-          chrome.storage.local.set({
-            "formStash": formStash
-          });
           location.reload();
         });
 

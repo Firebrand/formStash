@@ -1,4 +1,8 @@
+(function(){
 const fieldsObj = {};
+
+var fieldNum = 0;
+
 
 function addToFieldsObj(elementType, element) {
 
@@ -8,7 +12,6 @@ function addToFieldsObj(elementType, element) {
     console.log(`${key}~${value}`);
     fieldsObj[key] = value;
   }
-
 }
 
 hashCode = str => {
@@ -25,6 +28,7 @@ fields.forEach(field => {
   if (field.value.length > 0 && field.type !== 'hidden' && field.type !== 'submit') {
     if (field.type !== 'checkbox') {
       addToFieldsObj("input", field);
+      fieldNum++;
     } else {
       const key = `checkbox~id~${field.id}`;
       let value = 0;
@@ -32,6 +36,7 @@ fields.forEach(field => {
         value = 1;
       }
       console.log(`${key}~${value}`);
+      fieldNum++;
       fieldsObj[key] = value;
     }
   }
@@ -50,6 +55,7 @@ if (ckes != null) {
       const value = iframeDocument.body.innerHTML;
 
       console.log(`${key}~${value}`);
+      fieldNum++;
       fieldsObj[key] = value;
     }
   })
@@ -58,10 +64,12 @@ if (ckes != null) {
 
 const selects = document.body.querySelectorAll("select");
 selects.forEach(select => {
+  
   const key = `select~id~${select.id}`;
   const value = select.selectedIndex;
 
   console.log(`${key}~${value}`);
+  fieldNum++;
   fieldsObj[key] = value;
 })
 
@@ -72,6 +80,7 @@ if (chosens != null) {
     const key = `chosen~chosen~${chosen.id}`;
     const value = chosen.querySelector('.chosen-single').innerHTML;
     console.log(`${key}~${value}`);
+    fieldNum++;
     fieldsObj[key] = value;
   })
 }
@@ -80,10 +89,11 @@ if (chosens != null) {
 const textareas = document.body.querySelectorAll("textarea");
 textareas.forEach(textarea => {
   if (textarea.value.length > 1 && textarea.type !== 'hidden') addToFieldsObj("textarea", textarea);
+  fieldNum++;
 })
 
 const today = new Date();
-const documentTitle = `<b>${document.title}</b> (${today.toLocaleString("en-US")})`;
+const documentTitle = `<b>${document.title}</b> | ${today.toLocaleString("en-US")} | ${fieldNum}`;
 const hashedDocumentTitle = hashCode(document.title);
 
 
@@ -99,3 +109,4 @@ chrome.storage.local.get('formStash', result => {
     "formStash": formStash
   });
 });
+}());
