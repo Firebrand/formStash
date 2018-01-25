@@ -1,13 +1,16 @@
 {
-    "manifest_version": 2,
-  
-    "name": "FormStash by Alex T",
-    "description": "This extension will stash form data and pop it back onto any page",
-    "version": "1.0",
-  
-    "browser_action": {
-     "default_icon": "icon.png",
-     "default_popup": "popup.html"
-    },
-    "permissions": ["tabs", "<all_urls>","storage"]
-  }
+  "manifest_version": 2,
+
+  "name": "FormStash",
+  "description": "This extension will stash form data for later use. It saves a variety of different fields, including inputs,selects,radios,textareas,special drupal fields etc. and organizes them by form page name. Click on a stash to reapply the saved form data!",
+  "version": "1.0.0",
+  "update_url": "http://www.example.com/update.xml",
+  "browser_action": {
+   "default_icon": "icon-16.png",
+   "default_popup": "popup.html"
+  },
+  "icons": { "16": "icon-16.png",
+    "48": "icon-48.png",
+   "128": "icon-128.png" },
+  "permissions": ["tabs", "<all_urls>","storage"]
+}

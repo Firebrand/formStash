@@ -1,14 +1,26 @@
 <!doctype html>
 <html>
-  <head>
-    <title>FormStash by Alex T</title>
-    <script src="popup.js"></script>
-  </head>
-  <body style='width:500px;'>
-    <h1>FormStash</h1>
-    <button id="checkPage">Stash this form</button>
-    <button id="popPage">Pop this form</button>
-    <button id="clearAll">Clear all</button>
-    <div id="stash"></div>
-  </body>
+
+<head>
+  <title>FormStash by Alex T</title>
+  <script src="popup.js"></script>
+  <link rel="stylesheet" type="text/css" href="popup.css" />
+</head>
+
+<body style='width:500px;'>
+    <div style="float:left; width:59px;">
+        <img src="icon-48.png">
+      </div>
+  <div style="float:left; width:191px;">
+    <div style="font-weight:bold; font-size:20px; ">FormStash</div>
+    by Alex Tsirozidis
+  </div>
+  <div style="float:left;  width:250px; text-align:right;">
+    <button id="checkPage" class="btn btn-green">Stash this form</button>
+    <button id="clearAll" class="btn btn-red">Clear all</button>
+  </div>
+  <div id="message"></div>
+  <div style="float:left; width:480px; padding:10px; border:1px solid silver; margin:20px 20px 20px 0px" id="stash"><b>You have not stashed any forms yet</b></div>
+</body>
+
 </html>
